@@ -128,6 +128,11 @@ map.on('load', async () => {
     .domain([0, d3.max(stations, (d) => d.totalTraffic)])
     .range([0, 25]);
 
+  const tooltip = d3
+    .select('body')
+    .append('div')
+    .attr('class', 'tooltip');
+
   const circles = svg
     .selectAll('circle')
     .data(stations, (d) => d.short_name)
@@ -137,12 +142,18 @@ map.on('load', async () => {
     .style('--departure-ratio', (d) =>
       d.totalTraffic > 0 ? stationFlow(d.departures / d.totalTraffic) : 0.5,
     )
-    .each(function (d) {
-      d3.select(this)
-        .append('title')
-        .text(
-          `${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`,
-        );
+    .on('mouseover', (event, d) => {
+      tooltip
+        .style('display', 'block')
+        .html(`<strong>${d.totalTraffic} trips</strong><br>${d.departures} departures, ${d.arrivals} arrivals`);
+    })
+    .on('mousemove', (event) => {
+      tooltip
+        .style('left', `${event.clientX + 12}px`)
+        .style('top', `${event.clientY - 28}px`);
+    })
+    .on('mouseleave', () => {
+      tooltip.style('display', 'none');
     });
 
   function updatePositions() {

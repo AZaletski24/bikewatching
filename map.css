@@ -55,6 +55,19 @@ header em {
   pointer-events: auto;
 }
 
+.tooltip {
+  position: fixed;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 0.4em 0.7em;
+  border-radius: 4px;
+  font-size: 0.8em;
+  pointer-events: none;
+  display: none;
+  white-space: nowrap;
+}
+
 .legend {
   display: flex;
   gap: 1px;
