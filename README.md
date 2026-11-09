@@ -1,5 +1,7 @@
 # 🚴🏼‍♀️ Bikewatching
 
+Explore how Bluebikes traffic across Boston and Cambridge ebbs and flows throughout the day, with a map you can filter by time.
+
 An interactive map visualization of Boston and Cambridge bike infrastructure and Bluebikes station traffic, built for DSC 106 Lab 7. Combines Mapbox GL JS for map rendering with D3.js for data-driven SVG overlays.
 
 ---
